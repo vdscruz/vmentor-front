@@ -1,10 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import { Text } from 'atomize'
 
 export default function Home() {
   return (
     <div>
-      <span>hellow</span>
+      <Text textSize="display1">
+        This is Home Page
+      </Text>
     </div>
   )
 }

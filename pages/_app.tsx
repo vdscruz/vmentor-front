@@ -1,7 +1,25 @@
-import '../styles/globals.css'
+import React from 'react'
+import { StyleReset, ThemeProvider } from 'atomize';
+import { Provider as StyletronProvider } from 'styletron-react'
+import { Theme } from '../theme';
+import { styletron } from './../styletron';
+import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+const theme = Theme
+
+function MyApp({ Component, pageProps }: AppProps) {
+  let children = (
+    <Component {...pageProps} />
+  )
+
+  return (
+    <StyletronProvider value={styletron}>
+      <StyleReset />
+      <ThemeProvider theme={theme}>
+        {children}
+      </ThemeProvider >
+    </StyletronProvider>
+  )
 }
 
 export default MyApp
