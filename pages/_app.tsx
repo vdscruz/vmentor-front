@@ -4,12 +4,15 @@ import { Provider as StyletronProvider } from 'styletron-react'
 import { Theme } from '../theme';
 import { styletron } from './../styletron';
 import { AppProps } from 'next/app';
+import { Provider } from 'next-auth/client'
 
 const theme = Theme
 
 function MyApp({ Component, pageProps }: AppProps) {
   let children = (
-    <Component {...pageProps} />
+    <Provider session={pageProps.session}>
+      <Component {...pageProps} />
+    </Provider>
   )
 
   return (

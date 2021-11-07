@@ -1,11 +1,27 @@
 import { Text } from 'atomize'
+import { useSession, signIn, signOut } from 'next-auth/client'
 
 export default function Home() {
+  const [session, loading] = useSession();
+
+  if (loading) {
+    return null;
+  }
+
+  if (session) {
+    return (
+      <>
+        Signed in as {session.user.email} <br />
+        <button onClick={() => signOut()}>Sign out</button>
+      </>
+    )
+  }
+
   return (
-    <div>
-      <Text textSize="display1">
-        This is Home Page
-      </Text>
-    </div>
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
   )
 }
+
